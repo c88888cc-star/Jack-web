@@ -257,6 +257,7 @@
     width: 100%;
     height: 100%;
     opacity: 0.9;
+    display: none;
   }
   .hero-media-sheen {
     position: absolute;
@@ -1547,7 +1548,10 @@
       img.src = base + exts[attempt];
       return true;
     };
-    const showImage = () => { if (svg) svg.style.display = 'none'; };
+    const showImage = () => {
+      img.style.display = 'block';
+      if (svg) svg.style.display = 'none';
+    };
     const showFallback = () => {
       img.style.display = 'none';
       if (svg) svg.style.display = 'block';
