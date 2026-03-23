@@ -960,8 +960,29 @@
     nav { padding: 20px 32px; }
     .nav-links { display: none; }
     section { padding: 80px 32px; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .hero-left {
+      justify-content: flex-start;
+      padding: 120px 32px 36px;
+    }
+    .hero-right {
+      display: block;
+      min-height: 0;
+      padding: 0 32px 32px;
+    }
+    .hero-visual {
+      position: relative;
+      inset: auto;
+      min-height: 0;
+    }
+    .hero-media {
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 1.28 / 1;
+    }
     .philosophy-inner { grid-template-columns: 1fr; gap: 40px; }
     .philosophy-left { grid-template-columns: 1fr; gap: 20px; }
     .pillars { grid-template-columns: 1fr; }
@@ -971,6 +992,48 @@
     .why-grid { grid-template-columns: 1fr; }
     .cta-contacts { flex-direction: column; gap: 24px; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 18px 20px; }
+    section { padding: 72px 20px; }
+    .hero-left {
+      padding: 106px 20px 28px;
+    }
+    .hero-title {
+      font-size: clamp(52px, 14vw, 82px);
+      line-height: 0.9;
+    }
+    .hero-sub {
+      max-width: none;
+    }
+    .hero-actions {
+      flex-wrap: wrap;
+    }
+    .hero-right {
+      padding: 0 20px 24px;
+    }
+    .hero-media {
+      aspect-ratio: 1.02 / 1;
+    }
+    .hero-tag {
+      right: 18px;
+      bottom: 18px;
+    }
+    .hero-tag-num {
+      font-size: 56px;
+    }
+    .hero-stats {
+      left: 18px;
+      bottom: 64px;
+      gap: 14px;
+    }
+    .stat-num {
+      font-size: 28px;
+    }
+    .stat-label {
+      font-size: 8px;
+    }
   }
 </style>
 </head>
