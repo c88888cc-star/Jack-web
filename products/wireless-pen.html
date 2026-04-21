@@ -16,19 +16,7 @@
       background: #050505;
       scroll-behavior: smooth;
     }
-
-
-    html {
-      -webkit-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-    }
-
-    body {
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    body {
+body {
       margin: 0;
       background: #050505;
       font-family: 'Arial', sans-serif;
@@ -105,11 +93,66 @@
     }
 
 
+    /* codex-mobile-fix:start */
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      color: #e2e8f0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .slide,
+    .text-box,
+    .text-frame,
+    .text-link {
+      color: #e2e8f0;
+    }
+
+    .ppt-table td {
+      color: #333333;
+    }
+
     .text-box,
     .ppt-table td {
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
+
+    @media (max-width: 900px) {
+      html,
+      body {
+        overflow-x: auto;
+      }
+
+      body {
+        min-width: 1280px;
+        touch-action: pan-x pan-y;
+      }
+
+      .deck {
+        width: 1280px;
+        max-width: none;
+        margin: 0;
+        padding: 12px 0 24px;
+      }
+
+      .slide {
+        width: 1280px;
+        scroll-snap-align: start;
+      }
+
+      .slide + .slide {
+        margin-top: 16px;
+      }
+    }
+
+    /* codex-mobile-fix:end */
+
   </style>
 </head>
 <body>
@@ -131,187 +174,5 @@
 <section class="slide" data-slide="15" style="background:#0d0d0d;"><div class="el pic" style="left:0.000000%;top:0.000000%;width:100.000000%;height:100.000000%;z-index:1"><img src="ppt-oem-media/wireless-pen/ppt/media/image6.png" alt="Google Shape;391;p38" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el text-box" style="border-radius:0;left:6.328125%;top:26.407407%;width:65.755208%;height:22.740741%;z-index:2"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw"><span style="font-weight:700;font-size:3.5156cqw;font-family:'Arial', sans-serif;color:#ffffff">We are more than just a supply chain.</span><span style="font-weight:700;font-size:3.5156cqw;font-family:'Arial', sans-serif;color:#ffffff"> </span><br><span style="font-weight:700;font-size:3.5156cqw;font-family:'Arial', sans-serif;color:#ff4d00">We are an incubation platform for the tattoo industry.</span></p></div></div><div class="el text-box" style="border-radius:0;left:6.796875%;top:53.049592%;width:70.312500%;height:6.990741%;z-index:3"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw;line-height:1.600"><span style="font-size:2.0312cqw;font-family:'Lato', sans-serif;color:#ffffff">As our partner, you gain direct access to:</span></p></div></div><div class="el text-box" style="border-radius:0;left:9.062500%;top:63.569918%;width:35.856299%;height:3.368329%;z-index:4"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw;line-height:1.600"><span style="font-weight:700;font-size:1.5625cqw;font-family:'Lato', sans-serif;color:#ffffff">Professional high-quality tattoo equipment</span></p></div></div><div class="el text-box" style="border-radius:0;left:9.062500%;top:71.675926%;width:38.458333%;height:4.092593%;z-index:5"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw;line-height:1.600"><span style="font-weight:700;font-size:1.5625cqw;font-family:'Lato', sans-serif;color:#ffffff">A complete product line and a stable supply chain</span></p></div></div><div class="el text-box" style="border-radius:0;left:9.062500%;top:79.787037%;width:37.984375%;height:7.240741%;z-index:6"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw;line-height:1.600"><span style="font-weight:700;font-size:1.5625cqw;font-family:'Lato', sans-serif;color:#ffffff">Proven experience in global brand building and international expansion.</span></p></div></div><div class="el pic" style="left:5.937500%;top:73.081686%;width:1.953125%;height:2.916667%;z-index:7"><img src="ppt-oem-media/wireless-pen/ppt/media/image59.png" alt="Google Shape;397;p38" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el pic" style="left:6.328125%;top:64.258603%;width:1.406250%;height:2.916667%;z-index:8"><img src="ppt-oem-media/wireless-pen/ppt/media/image60.png" alt="Google Shape;398;p38" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el pic" style="left:6.171875%;top:81.905235%;width:1.562500%;height:2.916667%;z-index:9"><img src="ppt-oem-media/wireless-pen/ppt/media/image61.png" alt="Google Shape;399;p38" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el text-box" style="border-radius:0;left:7.890625%;top:8.472222%;width:90.071358%;height:7.069116%;z-index:10"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw"><span style="font-weight:700;font-size:3.2812cqw;font-family:'Poppins', sans-serif;color:#ffffff">Why choose JACK INCUBATION?</span></p></div></div><div class="el shape" style="background:#ff4d00;border-radius:0;left:6.328125%;top:8.472222%;width:0.469980%;height:8.748906%;z-index:11"></div></section>
 <section class="slide" data-slide="16" style="background:#0a0a0a;"><div class="el pic" style="left:52.500000%;top:25.220020%;width:41.093750%;height:73.055556%;z-index:1"><img src="ppt-oem-media/wireless-pen/ppt/media/image62.png" alt="Google Shape;406;p39" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el pic" style="left:5.824106%;top:60.775736%;width:1.763862%;height:3.611111%;z-index:2"><img src="ppt-oem-media/wireless-pen/ppt/media/image63.png" alt="Google Shape;407;p39" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el pic" style="left:5.824106%;top:67.303514%;width:1.763862%;height:3.611111%;z-index:3"><img src="ppt-oem-media/wireless-pen/ppt/media/image64.png" alt="Google Shape;408;p39" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el pic" style="left:5.824106%;top:73.831292%;width:1.763862%;height:3.611111%;z-index:4"><img src="ppt-oem-media/wireless-pen/ppt/media/image65.png" alt="Google Shape;409;p39" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el text-box" style="border-radius:0;left:8.203125%;top:9.247798%;width:89.825295%;height:9.090114%;z-index:5"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw"><span style="font-weight:700;font-size:4.2188cqw;font-family:'Urbanist', sans-serif;color:#ffffff">Contact us to start a collaboration</span></p></div></div><div class="el shape" style="background:#ff4d00;border-radius:0;left:6.250000%;top:9.247798%;width:0.625000%;height:10.139983%;z-index:6"></div><div class="el text-box" style="border-radius:0;left:6.250000%;top:38.099650%;width:43.476870%;height:18.175926%;z-index:7"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw"><span style="font-weight:700;font-size:2.8125cqw;font-family:'Urbanist', sans-serif;color:#e2e8f0">Empowering brands to become</span><span style="font-weight:700;font-size:2.8125cqw;font-family:'Urbanist', sans-serif;color:#ff4d00"> champions in the global tattoo market.</span></p></div></div><a href="https://www.instagram.com/jack_incubation/" class="el text-box text-link" style="border-radius:0;left:8.539534%;top:60.358909%;width:38.897638%;height:3.705162%;z-index:8" target="_blank" rel="noopener noreferrer"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw"><span style="font-size:1.7188cqw;font-family:'Urbanist', sans-serif;color:#e2e8f0">Instagram: @Jack_Incubation</span></p></div></a><a href="mailto:contact@jackincubation.com" class="el text-box text-link" style="border-radius:0;left:8.759760%;top:66.886687%;width:38.897638%;height:3.705162%;z-index:9"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw"><span style="font-size:1.7188cqw;font-family:'Urbanist', sans-serif;color:#e2e8f0">Email: contact@jackincubation.com</span></p></div></a><a href="https://wa.me/8617602500618" class="el text-box text-link" style="border-radius:0;left:8.203125%;top:73.414596%;width:25.354331%;height:11.111111%;z-index:10" target="_blank" rel="noopener noreferrer"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw"><span style="font-size:1.7188cqw;font-family:'Urbanist', sans-serif;color:#e2e8f0">WhatsApp: +86 176 0250 0618</span></p></div></a><div class="el text-box" style="border-radius:0;left:65.389411%;top:81.775678%;width:15.314961%;height:9.090114%;z-index:11"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:center;margin-top:0.0000cqw;margin-bottom:0.0000cqw"><span style="font-size:1.4062cqw;font-family:'Urbanist', sans-serif;color:#ffffff">Scan the QR code to add WhatsApp</span></p></div></div><div class="el pic" style="left:59.729536%;top:28.307437%;width:26.634695%;height:49.134952%;z-index:12"><img src="ppt-oem-media/wireless-pen/ppt/media/image66.png" alt="Google Shape;417;p39" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el pic" style="left:62.540600%;top:80.097332%;width:3.429503%;height:6.533333%;z-index:13"><img src="ppt-oem-media/wireless-pen/ppt/media/image67.png" alt="Google Shape;418;p39" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el pic" style="left:5.493151%;top:80.359070%;width:2.138706%;height:3.705162%;z-index:14"><img src="ppt-oem-media/wireless-pen/ppt/media/image68.png" alt="Google Shape;419;p39" style="left:-0.000000%;top:-0.000000%;width:100.000000%;height:100.000000%" loading="lazy"></div><div class="el text-box" style="border-radius:0;left:8.539534%;top:80.097171%;width:38.897638%;height:3.705162%;z-index:15"><div class="text-frame" style="left:0.000000%;right:0.000000%;top:0.000000%;bottom:0.000000%;justify-content:flex-start"><p style="margin:0;white-space:break-spaces;text-align:left;margin-top:0.0000cqw;margin-bottom:0.0000cqw"><span style="font-size:1.7188cqw;font-family:'Urbanist', sans-serif;color:#e2e8f0">Website: jackincubation.com</span></p></div></div></section>
   </main>
-
-    <script>
-    (() => {
-      const MOBILE_QUERY = window.matchMedia('(max-width: 900px)');
-      const SCALE_STEP = 0.01;
-      const MIN_SCALE_DESKTOP = 0.58;
-      const MIN_SCALE_MOBILE = 0.34;
-      const CQW_PATTERN = /(-?[\d.]+)cqw\b/g;
-
-      function toRgbParts(value) {
-        if (!value) return null;
-        const normalized = value.trim().toLowerCase();
-
-        if (normalized.startsWith('#')) {
-          let hex = normalized.slice(1);
-          if (hex.length === 3 || hex.length === 4) {
-            hex = hex
-              .slice(0, 3)
-              .split('')
-              .map((part) => part + part)
-              .join('');
-          } else if (hex.length >= 6) {
-            hex = hex.slice(0, 6);
-          }
-
-          if (hex.length !== 6) return null;
-          return [
-            parseInt(hex.slice(0, 2), 16),
-            parseInt(hex.slice(2, 4), 16),
-            parseInt(hex.slice(4, 6), 16),
-          ];
-        }
-
-        const match = normalized.match(/rgba?\(([^)]+)\)/);
-        if (!match) return null;
-
-        return match[1]
-          .split(',')
-          .slice(0, 3)
-          .map((part) => Number.parseFloat(part.trim()));
-      }
-
-      function luminance(parts) {
-        if (!parts) return 255;
-        const [r, g, b] = parts;
-        return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-      }
-
-      function backgroundColorFor(node) {
-        let current = node;
-        while (current && current !== document.documentElement) {
-          const bg = window.getComputedStyle(current).backgroundColor;
-          if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
-            return bg;
-          }
-          current = current.parentElement;
-        }
-        return window.getComputedStyle(document.body).backgroundColor;
-      }
-
-      function normalizeDarkText(root) {
-        root.querySelectorAll('span, p, a, td').forEach((node) => {
-          const style = window.getComputedStyle(node);
-          const fg = toRgbParts(style.color);
-          const bg = toRgbParts(backgroundColorFor(node));
-
-          if (!fg || !bg) return;
-
-          if (luminance(fg) < 105 && luminance(bg) < 150) {
-            node.style.color = '#e2e8f0';
-          }
-        });
-      }
-
-      function applyResponsiveUnits(slide) {
-        const slideWidth = slide.getBoundingClientRect().width;
-        if (!slideWidth) return;
-
-        slide.querySelectorAll('[style*="cqw"]').forEach((node) => {
-          const originalStyle = node.dataset.originalStyle || node.getAttribute('style') || '';
-          if (!node.dataset.originalStyle) {
-            node.dataset.originalStyle = originalStyle;
-          }
-
-          const convertedStyle = originalStyle.replace(CQW_PATTERN, (_, value) => {
-            const px = (slideWidth * Number.parseFloat(value)) / 100;
-            return `${px.toFixed(3)}px`;
-          });
-
-          node.setAttribute('style', convertedStyle);
-        });
-      }
-
-      function collectResizableNodes(root) {
-        return Array.from(root.querySelectorAll('[style*="font-size"]')).filter((node) => {
-          if (!node.style.fontSize) return false;
-          node.dataset.baseFontSize = node.style.fontSize;
-          return true;
-        });
-      }
-
-      function applyScale(nodes, scale) {
-        nodes.forEach((node) => {
-          const original = node.dataset.baseFontSize || node.style.fontSize;
-          const match = original && original.match(/^(-?[\d.]+)([a-z%]+)$/i);
-          if (!match) return;
-
-          const [, value, unit] = match;
-          node.style.fontSize = `${(Number.parseFloat(value) * scale).toFixed(3)}${unit}`;
-        });
-      }
-
-      function overflowRatio(element) {
-        const widthRatio = element.scrollWidth > 0 ? element.clientWidth / element.scrollWidth : 1;
-        const heightRatio = element.scrollHeight > 0 ? element.clientHeight / element.scrollHeight : 1;
-        return Math.min(widthRatio, heightRatio, 1);
-      }
-
-      function fitContainer(container, content) {
-        const nodes = collectResizableNodes(container);
-        if (!nodes.length) return;
-
-        applyScale(nodes, 1);
-
-        let scale = overflowRatio(content);
-        const minScale = MOBILE_QUERY.matches ? MIN_SCALE_MOBILE : MIN_SCALE_DESKTOP;
-        scale = Math.max(Math.min(scale, 1), minScale);
-        applyScale(nodes, scale);
-
-        while (
-          scale > minScale &&
-          (content.scrollHeight > content.clientHeight + 1 || content.scrollWidth > content.clientWidth + 1)
-        ) {
-          scale = Math.max(minScale, +(scale - SCALE_STEP).toFixed(2));
-          applyScale(nodes, scale);
-        }
-      }
-
-      function fitTextBox(box) {
-        const frame = box.querySelector('.text-frame');
-        if (!frame) return;
-        fitContainer(box, frame);
-      }
-
-      function fitTableCell(cell) {
-        fitContainer(cell, cell);
-      }
-
-      function layoutSlide(slide) {
-        applyResponsiveUnits(slide);
-        normalizeDarkText(slide);
-        slide.querySelectorAll('.text-box').forEach(fitTextBox);
-        slide.querySelectorAll('.ppt-table td').forEach(fitTableCell);
-      }
-
-      function layoutAllSlides() {
-        document.querySelectorAll('.slide').forEach(layoutSlide);
-      }
-
-      let rafId = 0;
-      function scheduleLayout() {
-        cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(layoutAllSlides);
-      }
-
-      window.addEventListener('DOMContentLoaded', scheduleLayout);
-      window.addEventListener('load', scheduleLayout);
-      window.addEventListener('resize', scheduleLayout);
-      window.addEventListener('orientationchange', scheduleLayout);
-
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(scheduleLayout).catch(() => {});
-      }
-
-      if (window.ResizeObserver) {
-        const observer = new ResizeObserver(scheduleLayout);
-        document.querySelectorAll('.slide').forEach((slide) => observer.observe(slide));
-      }
-    })();
-  </script>
-
-
 </body>
 </html>
