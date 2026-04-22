@@ -3,20 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- codex-mobile-redirect:start -->
-  <script>
-    (function () {
-      var ua = navigator.userAgent || "";
-      var isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-      var isIpadOs = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
-      var isMobileBrowser = /Android|iPhone|iPad|iPod|Mobile|HarmonyOS/i.test(ua) || isIpadOs;
-      var shouldRedirect = isTouchDevice && isMobileBrowser && window.innerWidth <= 1024;
-      if (shouldRedirect && !window.location.pathname.endsWith("-mobile.html")) {
-        window.location.replace("./stencil-transfer-gel-mobile.html" + window.location.search + window.location.hash);
-      }
-    })();
-  </script>
-  <!-- codex-mobile-redirect:end -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Poppins:wght@400;600;700&family=Urbanist:wght@400;500;700&display=swap" rel="stylesheet">
@@ -116,29 +102,29 @@ body {
     html {
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      overflow-x: auto;
+      overflow-x: hidden;
     }
 
     body {
       color: #e2e8f0;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
-      overflow-x: auto;
-      touch-action: pan-x pan-y;
-      min-width: 1280px;
+      overflow-x: hidden;
+      touch-action: pan-y;
+      min-width: 0;
     }
 
     .deck {
-      width: 1280px;
-      min-width: 1280px;
-      max-width: none;
+      width: min(100%, 1280px);
+      min-width: 0;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 12px 0 24px;
     }
 
     .slide {
-      width: 1280px;
-      max-width: none;
+      width: 100%;
+      max-width: 100%;
     }
 
     .slide,
@@ -171,11 +157,7 @@ body {
 
     @media (max-width: 1366px) {
       .deck {
-        margin: 0;
-      }
-
-      .slide + .slide {
-        margin-top: 16px;
+        margin: 0 auto;
       }
     }
 
