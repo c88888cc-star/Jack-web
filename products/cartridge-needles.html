@@ -35,7 +35,8 @@ body {
     }
 
     .deck {
-      width: min(100vw, 1280px);
+      width: 1280px;
+      max-width: none;
       margin: 0 auto;
     }
 
@@ -60,7 +61,10 @@ body {
       overflow: hidden;
     }
 
-    .text-box,
+    .text-box {
+      overflow: visible;
+    }
+
     .shape {
       overflow: hidden;
     }
@@ -84,7 +88,7 @@ body {
     }
 
     .ppt-table td {
-      overflow: hidden;
+      overflow: visible;
     }
 
     .connector {
@@ -98,12 +102,29 @@ body {
     html {
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
+      overflow-x: hidden;
     }
 
     body {
       color: #e2e8f0;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+      touch-action: pan-y;
+      min-width: 0;
+    }
+
+    .deck {
+      width: min(100%, 1280px);
+      min-width: 0;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 12px 0 24px;
+    }
+
+    .slide {
+      width: 100%;
+      max-width: 100%;
     }
 
     .slide,
@@ -113,41 +134,30 @@ body {
       color: #e2e8f0;
     }
 
+    .text-box,
+    .text-frame,
+    .ppt-table td {
+      overflow: visible;
+    }
+
     .ppt-table td {
       color: #333333;
     }
 
     .text-box,
+    .text-frame,
     .ppt-table td {
       overflow-wrap: break-word;
       word-break: normal;
     }
 
-    @media (max-width: 900px) {
-      html,
-      body {
-        overflow-x: auto;
-      }
+    .slide + .slide {
+      margin-top: 16px;
+    }
 
-      body {
-        min-width: 1280px;
-        touch-action: pan-x pan-y;
-      }
-
+    @media (max-width: 1366px) {
       .deck {
-        width: 1280px;
-        max-width: none;
-        margin: 0;
-        padding: 12px 0 24px;
-      }
-
-      .slide {
-        width: 1280px;
-        scroll-snap-align: start;
-      }
-
-      .slide + .slide {
-        margin-top: 16px;
+        margin: 0 auto;
       }
     }
 
