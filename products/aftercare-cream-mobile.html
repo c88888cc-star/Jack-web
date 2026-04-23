@@ -14,14 +14,16 @@
 
       function getMobileContentWidth(deck) {
         var width = DESIGN_WIDTH;
-        document.documentElement.style.setProperty('--deck-scale', '1');
         deck.querySelectorAll('.slide').forEach(function (slide) {
-          var slideRect = slide.getBoundingClientRect();
           width = Math.max(width, slide.scrollWidth || DESIGN_WIDTH);
           slide.querySelectorAll('.text-box, .text-link, .ppt-table, p').forEach(function (el) {
-            var rect = el.getBoundingClientRect();
-            var left = rect.left - slideRect.left;
-            width = Math.max(width, left + Math.max(el.scrollWidth, rect.width));
+            var left = 0;
+            var node = el;
+            while (node && node !== slide) {
+              left += node.offsetLeft || 0;
+              node = node.offsetParent;
+            }
+            width = Math.max(width, left + Math.max(el.scrollWidth, el.offsetWidth));
           });
         });
         return width;
@@ -37,7 +39,9 @@
         document.documentElement.style.setProperty('--scaled-deck-height', Math.ceil(deck.scrollHeight * scale + 24) + 'px');
       }
       window.addEventListener('load', fitDeckToViewport);
-      window.addEventListener('resize', fitDeckToViewport);
+      window.addEventListener('orientationchange', function () {
+        window.setTimeout(fitDeckToViewport, 250);
+      });
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(fitDeckToViewport);
       }
@@ -222,9 +226,18 @@ body {
       }
 
       .text-frame {
-        transform: scale(0.9);
+        transform: scale(0.92);
         transform-origin: top left;
-        width: 111.111% !important;
+        width: 108.696% !important;
+      }
+
+      .text-frame p,
+      .ppt-table p {
+        white-space: normal !important;
+        letter-spacing: normal !important;
+        word-spacing: normal !important;
+        overflow-wrap: anywhere !important;
+        word-break: normal !important;
       }
     }
 
