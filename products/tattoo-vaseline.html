@@ -2,10 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Poppins:wght@400;600;700&family=Urbanist:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    (function () {
+      var DESIGN_WIDTH = 1280;
+      var MOBILE_BREAKPOINT = 1024;
+
+      function getMobileContentWidth(deck) {
+        var width = DESIGN_WIDTH;
+        document.documentElement.style.setProperty('--deck-scale', '1');
+        deck.querySelectorAll('.slide').forEach(function (slide) {
+          var slideRect = slide.getBoundingClientRect();
+          width = Math.max(width, slide.scrollWidth || DESIGN_WIDTH);
+          slide.querySelectorAll('.text-box, .text-link, .ppt-table, p').forEach(function (el) {
+            var rect = el.getBoundingClientRect();
+            var left = rect.left - slideRect.left;
+            width = Math.max(width, left + Math.max(el.scrollWidth, rect.width));
+          });
+        });
+        return width;
+      }
+
+      function fitDeckToViewport() {
+        var deck = document.querySelector('.deck');
+        if (!deck) return;
+        var isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+        var contentWidth = isMobile ? getMobileContentWidth(deck) + 32 : DESIGN_WIDTH;
+        var scale = isMobile ? Math.min(1, window.innerWidth / contentWidth) : 1;
+        document.documentElement.style.setProperty('--deck-scale', scale.toFixed(6));
+        document.documentElement.style.setProperty('--scaled-deck-height', Math.ceil(deck.scrollHeight * scale + 24) + 'px');
+      }
+      window.addEventListener('load', fitDeckToViewport);
+      window.addEventListener('resize', fitDeckToViewport);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fitDeckToViewport);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fitDeckToViewport);
+      } else {
+        fitDeckToViewport();
+      }
+    })();
+  </script>
   <title>Tattoo Vaseline</title>
   <style>
     * {
@@ -110,21 +152,21 @@ body {
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
-      touch-action: pan-y;
+      touch-action: pan-x pan-y pinch-zoom;
       min-width: 0;
     }
 
     .deck {
-      width: min(100%, 1280px);
-      min-width: 0;
-      max-width: 1280px;
+      width: 1280px;
+      min-width: 1280px;
+      max-width: none;
       margin: 0 auto;
       padding: 12px 0 24px;
     }
 
     .slide {
-      width: 100%;
-      max-width: 100%;
+      width: 1280px;
+      max-width: none;
     }
 
     .slide,
@@ -147,7 +189,7 @@ body {
     .text-box,
     .text-frame,
     .ppt-table td {
-      overflow-wrap: break-word;
+      overflow-wrap: normal;
       word-break: normal;
     }
 
@@ -155,7 +197,38 @@ body {
       margin-top: 16px;
     }
 
-    @media (max-width: 1366px) {
+    @media (max-width: 1024px) {
+      html,
+      body {
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        min-height: var(--scaled-deck-height, 100vh);
+      }
+
+      .deck {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        transform: scale(var(--deck-scale, 1));
+        transform-origin: top left;
+      }
+
+      .slide {
+        overflow: visible;
+      }
+
+      .text-frame {
+        transform: scale(0.9);
+        transform-origin: top left;
+        width: 111.111% !important;
+      }
+    }
+
+    @media (min-width: 1025px) and (max-width: 1366px) {
       .deck {
         margin: 0 auto;
       }
