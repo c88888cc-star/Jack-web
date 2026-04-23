@@ -11,45 +11,41 @@
     (function () {
       var DESIGN_WIDTH = 1280;
       var MOBILE_BREAKPOINT = 1024;
+      var viewport = document.querySelector('meta[name="viewport"]');
 
-      function getMobileContentWidth(deck) {
-        var width = DESIGN_WIDTH;
-        deck.querySelectorAll('.slide').forEach(function (slide) {
-          width = Math.max(width, slide.scrollWidth || DESIGN_WIDTH);
-          slide.querySelectorAll('.text-box, .text-link, .ppt-table, p').forEach(function (el) {
-            var left = 0;
-            var node = el;
-            while (node && node !== slide) {
-              left += node.offsetLeft || 0;
-              node = node.offsetParent;
-            }
-            width = Math.max(width, left + Math.max(el.scrollWidth, el.offsetWidth));
-          });
-        });
-        return width;
+      function isTouchDevice() {
+        return (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) ||
+          (window.matchMedia && window.matchMedia('(any-pointer: coarse)').matches);
       }
 
-      function fitDeckToViewport() {
-        var deck = document.querySelector('.deck');
-        if (!deck) return;
-        var isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
-        var contentWidth = isMobile ? getMobileContentWidth(deck) + 32 : DESIGN_WIDTH;
-        var scale = isMobile ? Math.min(1, window.innerWidth / contentWidth) : 1;
-        document.documentElement.style.setProperty('--deck-scale', scale.toFixed(6));
-        document.documentElement.style.setProperty('--scaled-deck-height', Math.ceil(deck.scrollHeight * scale + 24) + 'px');
+      function getDeviceWidth() {
+        var visualWidth = window.visualViewport && window.visualViewport.width && window.visualViewport.scale
+          ? window.visualViewport.width * window.visualViewport.scale
+          : 0;
+        if (isTouchDevice() && visualWidth) return visualWidth;
+        if (isTouchDevice() && window.screen && window.screen.width) return window.screen.width;
+        if (window.screen && window.screen.width && window.screen.width <= MOBILE_BREAKPOINT) return window.screen.width;
+        return DESIGN_WIDTH;
       }
-      window.addEventListener('load', fitDeckToViewport);
+
+      function applyStableViewport() {
+        if (!viewport) return;
+        var deviceWidth = Math.min(DESIGN_WIDTH, getDeviceWidth());
+        var isMobile = deviceWidth <= MOBILE_BREAKPOINT;
+        document.documentElement.classList.toggle('is-mobile-fit', isMobile);
+
+        if (isMobile) {
+          var scale = Math.max(0.25, Math.min(1, deviceWidth / DESIGN_WIDTH));
+          viewport.setAttribute('content', 'width=' + DESIGN_WIDTH + ', initial-scale=' + scale.toFixed(6) + ', minimum-scale=' + scale.toFixed(6) + ', maximum-scale=5.0, user-scalable=yes, viewport-fit=cover');
+        } else {
+          viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover');
+        }
+      }
+
+      applyStableViewport();
       window.addEventListener('orientationchange', function () {
-        window.setTimeout(fitDeckToViewport, 250);
+        window.setTimeout(applyStableViewport, 250);
       });
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(fitDeckToViewport);
-      }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', fitDeckToViewport);
-      } else {
-        fitDeckToViewport();
-      }
     })();
   </script>
   <title>Cartridge Needles</title>
@@ -201,44 +197,36 @@ body {
       margin-top: 16px;
     }
 
-    @media (max-width: 1024px) {
-      html,
-      body {
-        width: 100%;
-        overflow-x: hidden;
-      }
+    html.is-mobile-fit,
+    html.is-mobile-fit body {
+      width: 1280px;
+      min-width: 1280px;
+      overflow-x: hidden;
+    }
 
-      body {
-        min-height: var(--scaled-deck-height, 100vh);
-      }
+    html.is-mobile-fit .deck {
+      position: static;
+      margin: 0;
+      transform: none;
+    }
 
-      .deck {
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 0;
-        transform: scale(var(--deck-scale, 1));
-        transform-origin: top left;
-      }
+    html.is-mobile-fit .slide {
+      overflow: hidden;
+    }
 
-      .slide {
-        overflow: visible;
-      }
+    html.is-mobile-fit .text-frame {
+      transform: scale(0.92);
+      transform-origin: top left;
+      width: 108.696% !important;
+    }
 
-      .text-frame {
-        transform: scale(0.92);
-        transform-origin: top left;
-        width: 108.696% !important;
-      }
-
-      .text-frame p,
-      .ppt-table p {
-        white-space: normal !important;
-        letter-spacing: normal !important;
-        word-spacing: normal !important;
-        overflow-wrap: anywhere !important;
-        word-break: normal !important;
-      }
+    html.is-mobile-fit .text-frame p,
+    html.is-mobile-fit .ppt-table p {
+      white-space: normal !important;
+      letter-spacing: normal !important;
+      word-spacing: normal !important;
+      overflow-wrap: anywhere !important;
+      word-break: normal !important;
     }
 
     @media (min-width: 1025px) and (max-width: 1366px) {
