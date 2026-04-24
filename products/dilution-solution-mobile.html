@@ -46,6 +46,48 @@
       window.addEventListener('orientationchange', function () {
         window.setTimeout(applyStableViewport, 250);
       });
+
+      function primeFirstSlide() {
+        var heroImage = document.querySelector('.slide[data-slide="1"] img[alt="Slide background"], .slide[data-slide="1"] img');
+        if (!heroImage) return null;
+        heroImage.loading = 'eager';
+        heroImage.decoding = 'sync';
+        heroImage.fetchPriority = 'high';
+        var heroSrc = heroImage.getAttribute('src');
+        if (heroSrc && !document.querySelector('link[data-hero-preload]')) {
+          var preload = document.createElement('link');
+          preload.rel = 'preload';
+          preload.as = 'image';
+          preload.href = heroSrc;
+          preload.setAttribute('data-hero-preload', 'true');
+          document.head.appendChild(preload);
+        }
+        return heroImage;
+      }
+
+      function revealPageWhenHeroReady(heroImage) {
+        if (!document.body) return;
+        function reveal() {
+          document.body.classList.add('page-ready');
+        }
+        if (!heroImage || heroImage.complete) {
+          reveal();
+          return;
+        }
+        heroImage.addEventListener('load', reveal, { once: true });
+        heroImage.addEventListener('error', reveal, { once: true });
+        window.setTimeout(reveal, 2500);
+      }
+
+      function initFirstScreen() {
+        revealPageWhenHeroReady(primeFirstSlide());
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFirstScreen, { once: true });
+      } else {
+        initFirstScreen();
+      }
     })();
   </script>
   <title>Dilution Solution</title>
@@ -62,6 +104,22 @@ body {
       margin: 0;
       background: #050505;
       font-family: 'Arial', sans-serif;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: #050505;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.28s ease;
+      pointer-events: none;
+    }
+
+    body.page-ready::before {
+      opacity: 0;
     }
 
     a {
@@ -74,6 +132,35 @@ body {
       max-width: none;
       position: absolute;
       object-fit: fill;
+    }
+
+    .pic,
+    .pic img,
+    .shape,
+    .shape img {
+      pointer-events: none;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -webkit-touch-callout: none;
+    }
+
+    .text-box,
+    .text-frame,
+    .text-box p,
+    .text-frame p,
+    .text-box span,
+    .text-frame span,
+    .ppt-table,
+    .ppt-table td,
+    .ppt-table p,
+    .ppt-table span,
+    .text-link,
+    .text-link p,
+    .text-link span {
+      -webkit-user-select: text;
+      user-select: text;
+      -webkit-touch-callout: default;
     }
 
     .deck {
